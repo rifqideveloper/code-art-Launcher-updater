@@ -24,4 +24,21 @@ margin_bottom = -16.0
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 use_threads = true
 
+[node name="sha" type="HTTPRequest" parent="."]
+
+[node name="error" type="AcceptDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -59.5
+margin_top = -29.0
+margin_right = 59.5
+margin_bottom = 29.0
+window_title = "Peringatan!"
+
 [connection signal="request_completed" from="HTTPRequest" to="." method="_download_selesai"]
+[connection signal="request_completed" from="sha" to="." method="_on_sha_request_completed"]
+[connection signal="confirmed" from="error" to="." method="_on_error_confirmed"]
+[connection signal="popup_hide" from="error" to="." method="_on_error_confirmed"]
+[connection signal="visibility_changed" from="error" to="." method="_on_error_visibility_changed"]
